@@ -74,7 +74,7 @@ const singleDataDisplay = (values) => {
     modalContainer.innerHTML = `
     <div class="col">
             <div class="card">
-                <div class="card-body ">
+                <div class="card-body m-0 p-2">
                     <h5 class="card-title">${accuracy.description}</h5>
                     <div class="d-flex gap-3 justify-content-center align-items-center ">
 
@@ -94,10 +94,11 @@ const singleDataDisplay = (values) => {
             <li>${stringThree.feature_name ? stringThree.feature_name : "Feature not available"}</li>
         </div>
         <div class="p-0 m-0">
-            <h3 class="w-bold">Integrations</h3>
-            <li>${integrations ? integrations.map((integration,index) =>
-                `<br><span>${index+1}.${integration}</span>`
-            ) : "Integration not available"}</li>
+            <h3 class="w-bold mt-5 mb-0">Integrations</h3>
+            <p>${integrations ? integrations.map((integration) =>
+                
+                `<br><span>&#x2022;${integration}</span>`
+            ) : "Integration not available"}</p>
         </div>
     </div>
                 </div>
