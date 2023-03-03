@@ -4,7 +4,23 @@
     border: 1px solid rgba(17, 17, 17, 0.1);
     border-radius: 16px;
 }
-.modal-design{
-    width:100%;
-    height:100%;
+
+.modal-design {
+    width: 100%;
+    height: 100%;
+}
+
+.custom-parent-position {
+    position: relative;;
+}
+.custom-child-position{
+    position: absolute;
+    top: 0 !important;
+    right:0 !important;
+    border: 1px solid black !important;
+    border-radius: 10px;
+    background-color: brown;
+    margin: 10px;
+    padding: 5px;
+    /* z-index: 999; */
 }

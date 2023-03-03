@@ -106,6 +106,9 @@ const singleDataDisplay = (values) => {
         </div>
         <div class="col">
             <div class="card">
+            <div class="custom-parent-position">
+            <div class="custom-child-position border-3 text-white">94% accuracy</div>
+        </div>
                 <img src="${image_link[0]?image_link[0]:"image can't found"}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${input_output_examples[0].input ? input_output_examples[0].input:"Title not found"}</h5>
