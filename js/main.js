@@ -1,19 +1,18 @@
 // Fetch all data
-let html = "";
 const fetchAllData = () => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     fetch(url).then(response => response.json()).then(data => displayData(data.data.tools))
 
 }
 
-// Display the fetch data
+// Display the fetch all data
 const displayData = (values) => {
     // console.log(values);
     const cardContainer = document.getElementById('card-container');
-     const items = values.slice(0, 6);
+     const items = values.slice(0, 12);
      items.forEach(item => {
         console.log(item); 
-        const { description, features, id, image, name, published_in } = item;
+        const { features, id, image, name, published_in } = item;
         const card = document.createElement('div');
         
         card.classList.add('col');
@@ -22,7 +21,7 @@ const displayData = (values) => {
                 <div class="card h-100 p-1">
                     <img src="${image ? image :"No image found"}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Feature</h5>
+                        <h5 class="card-title">Features</h5>
                         
                         <p>${features.map((feature , index) =>
                             `<br><span>${index+1}.${feature}</span>`
@@ -48,13 +47,26 @@ const displayData = (values) => {
                 </div>
         `;
         cardContainer.appendChild(card);
-    });
+     });
+    // spinner
+    toggleSpinner(false);
 }
 
-// main card feature function
-const singleDataDetails = () => {
+// Fetching modal data by api 
+const singleDataDetails = (id) => {
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
-    fetch(url).then(response => response.json()).then(data => console.log(data))
+    fetch(url).then(response => response.json()).then(data => singleDataDisplay(data.data));
 }
-
+const singleDataDisplay = (values) => {
+    // console.log(values);
+}
+const toggleSpinner = isLoading => {
+    const loadSection = document.getElementById('loader');
+    if (isLoading) {
+        loadSection.classList.remove('d-none');
+    } else {
+        loadSection.classList.add('d-none');
+    }
+}
+toggleSpinner(true);
 fetchAllData();
