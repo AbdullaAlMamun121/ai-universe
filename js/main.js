@@ -10,11 +10,12 @@ const fetchAllData = () => {
 const displayData = (values) => {
     // console.log(values);
     const cardContainer = document.getElementById('card-container');
-    values.forEach(value => {
-        console.log(value); 
-        const { description, features, id, image, name, published_in } = value;
+     const items = values.slice(0, 6);
+     items.forEach(item => {
+        console.log(item); 
+        const { description, features, id, image, name, published_in } = item;
         const card = document.createElement('div');
-        const item = document.createElement('p');
+        
         card.classList.add('col');
         let myFeature = "";
         card.innerHTML = `
@@ -23,11 +24,10 @@ const displayData = (values) => {
                     <div class="card-body">
                         <h5 class="card-title">Feature</h5>
                         
-                        // features section with map() array
                         <p>${features.map((feature , index) =>
                             `<br><span>${index+1}.${feature}</span>`
                         )}</p>
-                        // features section with map() array end
+                        
                     </div>
                     <div class="card-footer">
                         <div class="d-flex justify-content-between align-items-center">
@@ -39,7 +39,9 @@ const displayData = (values) => {
                                 </div>
                             </div>
                             <div>
-                                <i class="fa-sharp fa-solid fa-arrow-right"></i>
+                                <i class="fa-sharp fa-solid fa-arrow-right"
+                                data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="singleDataDetails('${id}')"
+                                ></i>
                             </div>
                         </div>
                     </div>
@@ -50,13 +52,9 @@ const displayData = (values) => {
 }
 
 // main card feature function
-const cardFeatures = (Feature) => {
-    let i = 0;
-    const featureList = document.createElement('ul');
-    console.log(Feature);
-    const featureItem = document.createElement("li");
-    featureItem.innerText += `${i++}.${Feature}`; 
-    featureList.appendChild(featureItem);
+const singleDataDetails = () => {
+    const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
+    fetch(url).then(response => response.json()).then(data => console.log(data))
 }
 
 fetchAllData();
