@@ -69,11 +69,12 @@ const singleDataDisplay = (values) => {
     console.log(values);
     const modalContainer = document.getElementById('modal-container');
     const { accuracy, description, features, id, image_link, logo, pricing } = values;
+    const {1:stringOne,2:stringTwo,3:stringThree } = features; 
 
     modalContainer.innerHTML = `
     <div class="col">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body ">
                     <h5 class="card-title">${accuracy.description}</h5>
                     <div class="d-flex gap-3 justify-content-center align-items-center ">
 
@@ -86,14 +87,14 @@ const singleDataDisplay = (values) => {
                   </div>
 
                   <div class="d-flex justify-content-center align-items-center gap-3">
-        <div class="p-3">
-            <h3>Feature</h3>
-            <p>Feature list</p>
-            <p>Feature list</p>
-            <p>Feature list</p>
+        <div class="p-0 m-0">
+            <h3 class="w-bold">Feature</h3>
+            <li>${stringOne.feature_name ? stringOne.feature_name : "Feature not available"}</li>
+            <li>${stringTwo.feature_name ? stringTwo.feature_name : "Feature not available"}</li>
+            <li>${stringThree.feature_name ? stringThree.feature_name : "Feature not available"}</li>
         </div>
-        <div class="p-3">
-            <h3>Feature</h3>
+        <div class="p-0 m-0">
+            <h3 class="w-bold">Integrations</h3>
             <p>Feature list</p>
             <p>Feature list</p>
             <p>Feature list</p>
