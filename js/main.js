@@ -15,7 +15,7 @@ const displayData = (values) => {
 
     const cardContainer = document.getElementById('card-container');
 
-    const items = values.slice(0, 6);
+    const items = values.slice(0, 12);
 
     items.forEach(item => {
         console.log(item);
@@ -62,7 +62,10 @@ const displayData = (values) => {
 // Fetching modal data by api 
 const singleDataDetails = (id) => {
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
-    fetch(url).then(response => response.json()).then(data => singleDataDisplay(data.data));
+    fetch(url).then(response => response.json()).then(data => {
+        singleDataDisplay(data.data);
+        toggleAccuracy(data.data.accuracy);
+    });
 }
 // modal single data show
 const singleDataDisplay = (values) => {
@@ -78,11 +81,11 @@ const singleDataDisplay = (values) => {
                     <h5 class="card-title">${accuracy.description}</h5>
                     <div class="d-flex gap-3 justify-content-center align-items-center ">
 
-                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing[0].price ?pricing[0].price:"Free"}<br>${pricing[0].plan?pricing[0].plan:'No charge'}</span>
+                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing[0].price ? pricing[0].price : "Free"}<br>${pricing[0].plan ? pricing[0].plan : 'No charge'}</span>
                     </div>
-                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing[1].price?pricing[1].price:"Free"}<br>${pricing[1].plan?pricing[1].plan:"No charge"}</span>
+                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing[1].price ? pricing[1].price : "Free"}<br>${pricing[1].plan ? pricing[1].plan : "No charge"}</span>
                     </div>
-                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing[2].price?pricing[2].price:"Free"}<br>${pricing[2].plan?pricing[2].plan:"No charge"}</span>
+                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing[2].price ? pricing[2].price : "Free"}<br>${pricing[2].plan ? pricing[2].plan : "No charge"}</span>
                     </div>
                   </div>
 
@@ -97,8 +100,8 @@ const singleDataDisplay = (values) => {
             <h3 class="w-bold mt-5 mb-0">Integrations</h3>
             <p>${integrations ? integrations.map((integration) =>
                 
-                `<br><span>&#x2022;${integration}</span>`
-            ) : "Integration not available"}</p>
+        `<br><span>&#x2022;${integration}</span>`
+    ) : "Integration not available"}</p>
         </div>
     </div>
                 </div>
@@ -106,8 +109,8 @@ const singleDataDisplay = (values) => {
         </div>
         <div class="col">
             <div class="card">
-            <div class="custom-parent-position">
-            <div class="custom-child-position border-3 text-white">94% accuracy</div>
+            <div id="accuracy-btn" class="custom-parent-position d-none">
+            <div class="custom-child-position border-3 text-white">${accuracy.score ? 'Accuracy '+(accuracy.score)*100+'%' : 'No Accuracy number'}</div>
         </div>
                 <img src="${image_link[0]?image_link[0]:"image can't found"}" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -129,7 +132,7 @@ const singleDataDisplay = (values) => {
 //     return date;
 // }
 // dateShort.addEventListener('click', fetchAllData);
-
+// 
 // spinner section
 const toggleSpinner = isLoading => {
     const loadSection = document.getElementById('loader');
@@ -139,6 +142,17 @@ const toggleSpinner = isLoading => {
         loadSection.classList.add('d-none');
     }
 }
+// accuracy button
+const toggleAccuracy = isLoading => {
+    const accuracyBtn = document.getElementById('accuracy-btn');
+    console.log(typeof isLoading.score);
+    if (isLoading.score !== undefined || isLoading.score !== null) {
+        accuracyBtn.classList.remove('d-none');
+    } else {
+        accuracyBtn.classList.add('d-none');
+    }
+
+ }
 // see all data section
 
 
