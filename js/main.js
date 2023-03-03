@@ -68,7 +68,7 @@ const singleDataDetails = (id) => {
 const singleDataDisplay = (values) => {
     console.log(values);
     const modalContainer = document.getElementById('modal-container');
-    const { accuracy, description, features, id, image_link, logo, pricing,integrations } = values;
+    const { accuracy, description, features, id, image_link,  pricing,integrations,input_output_examples } = values;
     const {1:stringOne,2:stringTwo,3:stringThree } = features; 
 
     modalContainer.innerHTML = `
@@ -105,12 +105,11 @@ const singleDataDisplay = (values) => {
         </div>
         <div class="col">
             <div class="card">
-                <img src="${image_link[0]}" class="card-img-top" alt="...">
+                <img src="${image_link[0]?image_link[0]:"image can't found"}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">${input_output_examples[0].input ? input_output_examples[0].input:"Title not found"}</h5>
                 
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
+                    <p class="card-text">${input_output_examples[0].output ? input_output_examples[0].output:"No! Not Yet! Take a break!!!"}</p>
                 </div>
             </div>
         </div>
