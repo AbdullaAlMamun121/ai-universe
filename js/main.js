@@ -68,7 +68,7 @@ const singleDataDetails = (id) => {
 const singleDataDisplay = (values) => {
     console.log(values);
     const modalContainer = document.getElementById('modal-container');
-    const { accuracy, description, features, id, image_link, logo, pricing } = values;
+    const { accuracy, description, features, id, image_link, logo, pricing,integrations } = values;
     const {1:stringOne,2:stringTwo,3:stringThree } = features; 
 
     modalContainer.innerHTML = `
@@ -95,9 +95,9 @@ const singleDataDisplay = (values) => {
         </div>
         <div class="p-0 m-0">
             <h3 class="w-bold">Integrations</h3>
-            <p>Feature list</p>
-            <p>Feature list</p>
-            <p>Feature list</p>
+            <li>${integrations ? integrations.map((integration,index) =>
+                `<br><span>${index+1}.${integration}</span>`
+            ) : "Integration not available"}</li>
         </div>
     </div>
                 </div>
