@@ -78,11 +78,11 @@ const singleDataDisplay = (values) => {
                     <h5 class="card-title">${accuracy.description}</h5>
                     <div class="d-flex gap-3 justify-content-center align-items-center ">
 
-                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing[0].price}<br>${pricing[0].plan}</span>
+                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing[0].price ?pricing[0].price:"Free"}<br>${pricing[0].plan?pricing[0].plan:'No charge'}</span>
                     </div>
-                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing[1].price}<br>${pricing[1].plan}</span>
+                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing[1].price?pricing[1].price:"Free"}<br>${pricing[1].plan?pricing[1].plan:"No charge"}</span>
                     </div>
-                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing[2].price}<br>${pricing[2].plan}</span>
+                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing[2].price?pricing[2].price:"Free"}<br>${pricing[2].plan?pricing[2].plan:"No charge"}</span>
                     </div>
                   </div>
 
