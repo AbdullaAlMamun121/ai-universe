@@ -4,22 +4,20 @@ const fetchAllData = () => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     fetch(url).then(response => response.json()).then(data => {
         // console.log(data.data.tools);
-        displayData(data.data.tools);
-
+        displayData(data.data.tools.slice(0, 6));
+        // formatingData(data.data.tools);
     }
     )
 }
 
 // Display the fetch all data
 const displayData = (values) => {
-
+    console.log(values);
+    // console.log(values);
     const cardContainer = document.getElementById('card-container');
-
-    const items = values.slice(0, 12);
-
-    items.forEach(item => {
-        console.log(item);
-
+    cardContainer.innerHTML = '';
+    values.forEach(item => {
+        
         const { features, id, image, name, published_in } = item;
         const card = document.createElement('div');
 
@@ -71,8 +69,8 @@ const singleDataDetails = (id) => {
 const singleDataDisplay = (values) => {
     console.log(values);
     const modalContainer = document.getElementById('modal-container');
-    const { accuracy, description, features, id, image_link,  pricing,integrations,input_output_examples } = values;
-    const {1:stringOne,2:stringTwo,3:stringThree } = features; 
+    const { accuracy, description, features, id, image_link, pricing, integrations, input_output_examples } = values;
+    const { 1: stringOne, 2: stringTwo, 3: stringThree } = features;
 
     modalContainer.innerHTML = `
     <div class="col">
@@ -99,7 +97,7 @@ const singleDataDisplay = (values) => {
         <div class="p-0 m-0">
             <h3 class="w-bold mt-5 mb-0">Integrations</h3>
             <p>${integrations ? integrations.map((integration) =>
-                
+
         `<br><span>&#x2022;${integration}</span>`
     ) : "Integration not available"}</p>
         </div>
@@ -110,13 +108,13 @@ const singleDataDisplay = (values) => {
         <div class="col">
             <div class="card">
             <div id="accuracy-btn" class="custom-parent-position d-none">
-            <div class="custom-child-position border-3 text-white">${accuracy.score ? 'Accuracy '+(accuracy.score)*100+'%' : 'No Accuracy number'}</div>
+            <div class="custom-child-position border-3 text-white">${accuracy.score ? 'Accuracy ' + (accuracy.score) * 100 + '%' : 'No Accuracy number'}</div>
         </div>
-                <img src="${image_link[0]?image_link[0]:"image can't found"}" class="card-img-top" alt="...">
+                <img src="${image_link[0] ? image_link[0] : "image can't found"}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">${input_output_examples[0].input ? input_output_examples[0].input:"Title not found"}</h5>
+                    <h5 class="card-title">${input_output_examples[0].input ? input_output_examples[0].input : "Title not found"}</h5>
                 
-                    <p class="card-text">${input_output_examples[0].output ? input_output_examples[0].output:"No! Not Yet! Take a break!!!"}</p>
+                    <p class="card-text">${input_output_examples[0].output ? input_output_examples[0].output : "No! Not Yet! Take a break!!!"}</p>
                 </div>
             </div>
         </div>
@@ -125,14 +123,12 @@ const singleDataDisplay = (values) => {
 
 }
 // sort by date
-// const dateShort = document.getElementById('sort-date');
-// function sortByDate(date) {
-//     // console.log(date);
-//     date.sort((a, b) => new Date(a.date) - new Date(b.date));
-//     return date;
-// }
-// dateShort.addEventListener('click', fetchAllData);
-// 
+const formatingData = (values) => {
+    console.log(values);
+    const formateDate = values.sort((a, b) => new Date(a.published_in) - new Date(b.published_in));
+    // console.log(formateDate);
+}
+
 // spinner section
 const toggleSpinner = isLoading => {
     const loadSection = document.getElementById('loader');
@@ -152,9 +148,15 @@ const toggleAccuracy = isLoading => {
         accuracyBtn.classList.add('d-none');
     }
 
- }
+}
 // see all data section
-
+const showAllDataTogether = () => {
+    const url = `https://openapi.programming-hero.com/api/ai/tools`;
+    fetch(url).then(response => response.json()).then(data => {
+        displayData(data.data.tools);
+    }
+    )
+}
 
 toggleSpinner(true);
 fetchAllData();
