@@ -3,6 +3,8 @@
     background: #FFFFFF;
     border: 1px solid rgba(17, 17, 17, 0.1);
     border-radius: 16px;
+    padding: 0;
+    margin: 0;
 }
 
 .modal-design {
@@ -32,4 +34,7 @@
     width: 10px !important;
     height: 10px !important;
     border-radius: 20px !important;
+}
+.footer-margin-bottom{
+    margin-bottom: 100px;
 }

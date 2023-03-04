@@ -16,6 +16,15 @@ const displayData = (values) => {
     // console.log(values);
     const cardContainer = document.getElementById('card-container');
     cardContainer.innerHTML = '';
+
+    const showAll = document.getElementById('show-all');
+    cardContainer.innerHTML = '';
+    if (values.length === 6) {
+        showAll.classList.remove('d-none');
+    }else{
+        showAll.classList.add('d-none');
+    }
+
     values.forEach(item => {
         
         const { features, id, image, name, published_in } = item;
@@ -23,7 +32,7 @@ const displayData = (values) => {
 
         card.classList.add('col');
         card.innerHTML = `
-                <div class="card h-100 p-1">
+                <div class="card">
                     <img src="${image ? image : "No image found"}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Features</h5>
@@ -78,7 +87,7 @@ const singleDataDisplay = (values) => {
             <div class="card">
                 <div class="card-body m-0 p-2">
                     <h5 class="card-title">${accuracy.description}</h5>
-                    <div class="d-flex gap-3 justify-content-center align-items-center ">
+                    <div class="d-md-flex d-lg-flex gap-3 justify-content-center align-items-center ">
 
                     <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing[0].price ? pricing[0].price : "Free"}<br>${pricing[0].plan ? pricing[0].plan : 'No charge'}</span>
                     </div>
@@ -88,7 +97,7 @@ const singleDataDisplay = (values) => {
                     </div>
                   </div>
 
-                  <div class="d-flex justify-content-center align-items-center gap-3">
+                  <div class="d-md-flex d-lg-flex justify-content-center align-items-center gap-3">
         <div class="p-0 m-0">
             <h3 class="w-bold">Feature</h3>
             <li>${stringOne.feature_name ? stringOne.feature_name : "Feature not available"}</li>
