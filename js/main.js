@@ -2,18 +2,15 @@
 
 const fetchAllData = () => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
-    fetch(url).then(response => response.json()).then(data => {
-        // console.log(data.data.tools);
-        displayData(data.data.tools.slice(0, 6));
-        
+    fetch(url).then(response => response.json()).then(data => { 
+        displayData(data.data.tools.slice(0, 6));      
     }
     )
 }
 
 // Display the fetch all data
 const displayData = (values) => {
-    console.log(values);
-    // console.log(values);
+    
     const cardContainer = document.getElementById('card-container');
     cardContainer.innerHTML = '';
 
@@ -78,7 +75,7 @@ const singleDataDetails = (id) => {
 const singleDataDisplay = (values) => {
     console.log(values);
     const modalContainer = document.getElementById('modal-container');
-    const element = document.getElementById('accuracy-btn');
+   
     const { accuracy, description, features, id, image_link, pricing, integrations, input_output_examples } = values;
     const { 1: stringOne, 2: stringTwo, 3: stringThree } = features;
 
@@ -155,7 +152,7 @@ const toggleSpinner = isLoading => {
 // accuracy button
 const toggleAccuracy = isLoading => {
     const accuracyBtn = document.getElementById('accuracy-btn');
-    // console.log(typeof isLoading.score);
+    
     if (isLoading.score) {
         accuracyBtn.classList.remove('d-none');
     } else {
