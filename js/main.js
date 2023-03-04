@@ -83,23 +83,23 @@ const singleDataDisplay = (values) => {
     <div class="col">
             <div class="card">
                 <div class="card-body m-0 p-2">
-                    <h5 class="card-title">${accuracy.description}</h5>
+                    <h5 class="card-title">${accuracy?.description ?? "No description here"}</h5>
                     <div class="d-md-flex d-lg-flex gap-3 justify-content-center align-items-center ">
 
-                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing[0].price ? pricing[0].price : "Free"}<br>${pricing[0].plan ? pricing[0].plan : 'No charge'}</span>
+                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing?.[0]?.price ?? 'Free' }<br>${pricing?.[0]?.plan ?? 'Free' }</span>
                     </div>
-                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing[1].price ? pricing[1].price : "Free"}<br>${pricing[1].plan ? pricing[1].plan : "No charge"}</span>
+                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing?.[1]?.price ?? "Free"}<br>${pricing?.[1]?.plan ?? "No charge"}</span>
                     </div>
-                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing[2].price ? pricing[2].price : "Free"}<br>${pricing[2].plan ? pricing[2].plan : "No charge"}</span>
+                    <div class="bg-white border border-warning rounded p-1 mr-3"><span class="text-warning">${pricing?.[2]?.price ?? "Free"}<br>${pricing?.[0]?.plan ?? "No charge"}</span>
                     </div>
                   </div>
 
                   <div class="d-md-flex d-lg-flex justify-content-center align-items-center gap-3">
         <div class="p-0 m-0">
             <h3 class="w-bold">Feature</h3>
-            <li>${stringOne.feature_name ? stringOne.feature_name : "Feature not available"}</li>
-            <li>${stringTwo.feature_name ? stringTwo.feature_name : "Feature not available"}</li>
-            <li>${stringThree.feature_name ? stringThree.feature_name : "Feature not available"}</li>
+            <li>${stringOne?.feature_name ?? "Feature not available"}</li>
+            <li>${stringTwo?.feature_name ?? "Feature not available"}</li>
+            <li>${stringThree?.feature_name ?? "Feature not available"}</li>
         </div>
         <div class="p-0 m-0">
             <h3 class="w-bold mt-5 mb-0">Integrations</h3>
@@ -115,13 +115,13 @@ const singleDataDisplay = (values) => {
         <div class="col">
             <div class="card">
             <div id="accuracy-btn" class="custom-parent-position d-none">
-            <div class="custom-child-position border-3 text-white">${accuracy.score ? 'Accuracy ' + (accuracy.score) * 100 + '%' : false }</div>
+            <div class="custom-child-position border-3 text-white">${accuracy?.score ? 'Accuracy ' + (accuracy.score) * 100 + '%' : false }</div>
         </div>
-                <img src="${image_link[0] ? image_link[0] : "image can't found"}" class="card-img-top" alt="...">
+                <img src="${image_link?.[0] ?? "image can't found"}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">${input_output_examples[0].input ? input_output_examples[0].input : "Title not found"}</h5>
+                    <h5 class="card-title">${input_output_examples?.[0].input ?? "Title not found"}</h5>
                 
-                    <p class="card-text">${input_output_examples[0].output ? input_output_examples[0].output : "No! Not Yet! Take a break!!!"}</p>
+                    <p class="card-text">${input_output_examples?.[0].output ?? "No! Not Yet! Take a break!!!"}</p>
                 </div>
             </div>
         </div>
