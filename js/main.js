@@ -69,6 +69,7 @@ const singleDataDetails = (id) => {
 const singleDataDisplay = (values) => {
     console.log(values);
     const modalContainer = document.getElementById('modal-container');
+    const element = document.getElementById('accuracy-btn');
     const { accuracy, description, features, id, image_link, pricing, integrations, input_output_examples } = values;
     const { 1: stringOne, 2: stringTwo, 3: stringThree } = features;
 
@@ -108,7 +109,7 @@ const singleDataDisplay = (values) => {
         <div class="col">
             <div class="card">
             <div id="accuracy-btn" class="custom-parent-position d-none">
-            <div class="custom-child-position border-3 text-white">${accuracy.score ? 'Accuracy ' + (accuracy.score) * 100 + '%' : 'No Accuracy number'}</div>
+            <div class="custom-child-position border-3 text-white">${accuracy.score ? 'Accuracy ' + (accuracy.score) * 100 + '%' : false }</div>
         </div>
                 <img src="${image_link[0] ? image_link[0] : "image can't found"}" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -145,8 +146,8 @@ const toggleSpinner = isLoading => {
 // accuracy button
 const toggleAccuracy = isLoading => {
     const accuracyBtn = document.getElementById('accuracy-btn');
-    console.log(typeof isLoading.score);
-    if (isLoading.score !== undefined || isLoading.score !== null) {
+    // console.log(typeof isLoading.score);
+    if (isLoading.score) {
         accuracyBtn.classList.remove('d-none');
     } else {
         accuracyBtn.classList.add('d-none');
