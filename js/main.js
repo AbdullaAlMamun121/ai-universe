@@ -5,7 +5,7 @@ const fetchAllData = () => {
     fetch(url).then(response => response.json()).then(data => {
         // console.log(data.data.tools);
         displayData(data.data.tools.slice(0, 6));
-        // formatingData(data.data.tools);
+        
     }
     )
 }
@@ -123,10 +123,14 @@ const singleDataDisplay = (values) => {
 
 }
 // sort by date
-const formatingData = (values) => {
-    console.log(values);
-    const formateDate = values.sort((a, b) => new Date(a.published_in) - new Date(b.published_in));
-    // console.log(formateDate);
+const formatingData = () => {
+    const url = `https://openapi.programming-hero.com/api/ai/tools`;
+    fetch(url).then(response => response.json()).then(data => {
+        const sortData = data.data.tools;
+        const formateDate = sortData.sort((a, b) => new Date(a.published_in) - new Date(b.published_in));
+        displayData(formateDate);
+    }
+    )
 }
 
 // spinner section
